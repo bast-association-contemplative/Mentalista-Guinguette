@@ -16,7 +16,7 @@
 #define      RESET_PIN  4
 
 volatile char inChar;
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 int difficulty = 2;
 
@@ -57,12 +57,11 @@ void setup() {
     strip.show();
   }
   
-  
   // print help
-  Serial.println("LIGHT Controller: starting..."); 
+  Serial.println("LEVITATION Controller: starting..."); 
   Serial.println("Help Commands: ");
-  Serial.println("    'r' = ");
-  Serial.println("    'p' = ");
+  Serial.println("    'P' = JOUEUR 1");
+  Serial.println("    '{' = JOUEUR 2");
   
   Serial.println("Waiting for Alpha Brainwaves...");
 }

@@ -1,7 +1,9 @@
 #ifndef _words_h_
 #define _words_h_
 
-String data[] = {
+#define DATA_SIZE 10
+
+String data[DATA_SIZE] = {
   "une menthe à l’eau et 3 chips",
   "deux cornichons",
   "3 cacahuètes et un coca",

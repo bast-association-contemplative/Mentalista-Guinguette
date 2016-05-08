@@ -1,4 +1,13 @@
-
+/* ----------------------------------------------------------------------------------------------------
+ * MENTALISTA GUINGUETTE – PRINTER
+ * Update: 08/05/16
+ *
+ * print what you want with OpenBCI / Processing
+ * Using Adafruit Termal Printer
+ * 
+ * ----------------------------------------------------------------------------------------------------
+ */ 
+ 
 #include "Adafruit_Thermal.h"
 #include "words.h"
 #include "SoftwareSerial.h"
@@ -8,13 +17,20 @@
 SoftwareSerial mySerial(RX_PIN, TX_PIN);
 Adafruit_Thermal printer(&mySerial);
 
-int ManifestoLenght = 0;
-
 void setup() {
   mySerial.begin(19200);
   printer.begin();  
 
   Serial.begin(115200);
+  
+  // print help
+  Serial.println("PRINTER Controller: starting..."); 
+  Serial.println("Help Commands: ");
+  Serial.println("    'P' ou '{' = print!");
+  Serial.println("    'S'        = sleep printer");
+  Serial.println("    'R'        = wake printer");
+  
+  Serial.println("Waiting for Alpha Brainwaves...");
 }
 
 void loop() {}
@@ -26,7 +42,7 @@ void serialEvent() {
     Serial.println(inChar);
 
     if( inChar == 'P' || inChar == '{'){
-      printManifesto();
+      printNow();
     } else if ( inChar == 'S' ) {
       printer.sleep();      // Tell printer to sleep
     } else if ( inChar == 'R' ) {
@@ -36,11 +52,12 @@ void serialEvent() {
   }
 }
 
-void printManifesto(){
-  int orderLenght = random(0,9);
+void printNow(){
+  int orderLenght = random(0,DATA_SIZE);
 
   printer.boldOn();
   printer.println("j'aimerais " + data[orderLenght] + "\n");
+   Serial.println("j'aimerais " + data[orderLenght] + "\n");
   printer.boldOff();
 }
 
