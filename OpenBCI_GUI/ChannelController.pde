@@ -117,7 +117,33 @@ class ChannelController {
       }
     }
     verbosePrint("made it!");
+    
+    //DESACTIVATE CHANNEL BY DEFAULT 1,4,5,6,7,8
+    /*deactivateChannel(0);
+    initChannelWrite(0);
+    deactivateChannel(3);
+    initChannelWrite(3);
+    deactivateChannel(4);
+    initChannelWrite(4);
+    deactivateChannel(5);
+    initChannelWrite(5);
+    deactivateChannel(6);
+    initChannelWrite(6);
+    deactivateChannel(7);
+    initChannelWrite(7);*/
+    
+    /*powerDownChannel(0);
+    powerDownChannel(3);
+    powerDownChannel(4);
+    powerDownChannel(5);
+    powerDownChannel(6);
+    powerDownChannel(7);*/
+    
+    channelSettingButtons[1][4].setString("Off");
+    channelSettingButtons[2][4].setString("Off");
+    
     update(); //update 1 time to refresh button values based on new loaded settings
+
   }
 
   public void update() {
@@ -159,8 +185,9 @@ class ChannelController {
             if (channelSettingValues[i][j] == '1') channelSettingButtons[i][3].setString("Include");
             break;
           case 4: // SRB2 ??
-            if (channelSettingValues[i][j] == '0') channelSettingButtons[i][4].setString("Off");
-            if (channelSettingValues[i][j] == '1') channelSettingButtons[i][4].setString("On");
+            if (channelSettingValues[i][j] == '0') channelSettingButtons[i][4].setString("On");
+            //if (channelSettingValues[i][j] == '0') channelSettingButtons[i][4].setString("Off");
+            if (channelSettingValues[i][j] == '1') channelSettingButtons[i][4].setString("Off");
             break;
           case 5: // SRB1 ??
             if (channelSettingValues[i][j] == '0') channelSettingButtons[i][5].setString("No");
@@ -227,7 +254,7 @@ class ChannelController {
   }
 
   public void draw() {
-
+          
     pushStyle();
     noStroke();
 
@@ -391,7 +418,7 @@ class ChannelController {
         if (channelSettingValues[i][0] < maxValuesPerSetting[0]) {
           channelSettingValues[i][0] = '1';	//increment [i][j] channelSettingValue by, until it reaches max values per setting [j], 
           // channelSettingButtons[i][0].setColorNotPressed(color(25,25,25));
-          // powerDownChannel(i);
+          // (i);
           deactivateChannel(i);
         } else {
           channelSettingValues[i][0] = '0';
@@ -441,7 +468,7 @@ class ChannelController {
       impedanceCheckButtons[i][1].isActive = false;
       impedanceCheckButtons[i][1].wasPressed = false;
     }
-
+    
     update(); //update once to refresh button values
   }
 
@@ -527,7 +554,7 @@ class ChannelController {
     }
   }
 
-
+  
   public void createChannelSettingButtons() {
     //the size and space of these buttons are dependendant on the size of the screen and full ChannelController
 

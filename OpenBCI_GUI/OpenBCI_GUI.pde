@@ -104,7 +104,7 @@ EEG_Processing eegProcessing;
 EEG_Processing_User eegProcessing_user;
 
 //define hexbug
-String hexBug_portName = "/dev/tty.usbmodem1421";  //starts as N/A but is selected from control panel to match your OpenBCI USB Dongle's serial/COM
+String hexBug_portName = "/dev/tty.usbmodem1421"; //starts as N/A but is selected from control panel to match your OpenBCI USB Dongle's serial/COM
 Serial hexBug_serial;
 int hexBug_baud = 115200; //baud rate from the Arduino
 HexBug hexBug;

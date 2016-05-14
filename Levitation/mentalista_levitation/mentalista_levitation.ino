@@ -31,11 +31,11 @@ void setup() {
   // initialize serial:
   Serial.begin(115200);
 
-  digitalWrite(RESET_PIN, HIGH);
   pinMode(RESET_PIN, OUTPUT);
-
-  digitalWrite(LEVITATION_PIN, LOW);
+  digitalWrite(RESET_PIN, HIGH);
+  
   pinMode(LEVITATION_PIN, OUTPUT);
+  digitalWrite(LEVITATION_PIN, HIGH);
   
   pinMode(NEO_PIXEL_PIN, OUTPUT);
   strip.begin();
@@ -103,6 +103,7 @@ void serialEvent() {
     }
     
     if(nbJoueur1+nbJoueur2 >= strip.numPixels()){
+      digitalWrite(LEVITATION_PIN, LOW);
       win();
     }
     //Serial.println(nbJoueur1 + nbJoueur2 + " / " + strip.numPixels());
@@ -116,7 +117,7 @@ void win(){
   }
 
   //STOP LEVITATION
-  digitalWrite(LEVITATION_PIN, HIGH);
+  //digitalWrite(LEVITATION_PIN, LOW);
   
   //STOP 10s and RESET GAME
   delay(10000);

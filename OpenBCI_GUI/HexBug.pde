@@ -1,5 +1,3 @@
-
-
 //////////////////////////////////////////////////////////////
 //
 // This class creates and manages the messaging to the Hex Bug
@@ -44,11 +42,11 @@ class HexBug {
   //Constructor, pass in an already-opened serial port
   HexBug(Serial serialPort) {
     int ID = 0;
-    command_forward = new Command(serialPort,"P","Swim!",ID++);
-    command_right = new Command(serialPort,"P","Right",ID++);
-    command_left = new Command(serialPort,"P","Left",ID++);
-    command_climb = new Command(serialPort,"P","Climb",ID++);
-    command_dive = new Command(serialPort,"P","Dive",ID++);
+    command_forward = new Command(serialPort,"{","Joueur1",ID++);
+    command_right = new Command(serialPort,"P","Joueur2",ID++);
+    command_left = new Command(serialPort,"{","Joueur1",ID++);
+    command_climb = new Command(serialPort,"P","Joueur2",ID++);
+    command_dive = new Command(serialPort,"{","Joueur1",ID++);
   }
   
   public void climb() {
@@ -58,24 +56,12 @@ class HexBug {
     prev_command = command_dive.issue();
   }
   public void forward() {
-    //if (fireBetweenMoves & (prev_command != command_forward.ID)) {
-    //  prev_command = command_fire.issue();  //issue a FIRE command on a transition
-    //  waitMilliseconds(wait_millis);
-    //}
     prev_command = command_forward.issue();
   }
   public void left() {
-    //if (fireBetweenMoves & (prev_command != command_left.ID)) {
-    //  prev_command = command_fire.issue();  //issue a FIRE command on a transition
-    //  waitMilliseconds(wait_millis);
-    //}
     prev_command = command_left.issue();
   }
   public void right() {
-    //if (fireBetweenMoves & (prev_command != command_right.ID)) {
-    //  prev_command = command_fire.issue();  //issue a FIRE command on a transition
-    //  waitMilliseconds(wait_millis);
-    //}
     prev_command = command_right.issue();
   }
   
