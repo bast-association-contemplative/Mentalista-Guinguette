@@ -11,9 +11,9 @@
 #include <Adafruit_NeoPixel.h>
 
 // définition des broches utilisées
-#define LEVITATION_PIN  3
+#define LEVITATION_PIN  4
 #define  NEO_PIXEL_PIN  6
-#define      RESET_PIN  4
+#define      RESET_PIN  3
 
 volatile char inChar;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
@@ -35,7 +35,7 @@ void setup() {
   digitalWrite(RESET_PIN, HIGH);
   
   pinMode(LEVITATION_PIN, OUTPUT);
-  digitalWrite(LEVITATION_PIN, HIGH);
+  digitalWrite(LEVITATION_PIN, LOW);
   
   pinMode(NEO_PIXEL_PIN, OUTPUT);
   strip.begin();
@@ -64,6 +64,7 @@ void setup() {
   Serial.println("    '{' = JOUEUR 2");
   
   Serial.println("Waiting for Alpha Brainwaves...");
+
 }
 
 void loop() {}
@@ -103,8 +104,9 @@ void serialEvent() {
     }
     
     if(nbJoueur1+nbJoueur2 >= strip.numPixels()){
-      digitalWrite(LEVITATION_PIN, LOW);
-      win();
+      digitalWrite(LEVITATION_PIN, HIGH);
+      //delay(5000);
+      //win();
     }
     //Serial.println(nbJoueur1 + nbJoueur2 + " / " + strip.numPixels());
   }
@@ -117,7 +119,7 @@ void win(){
   }
 
   //STOP LEVITATION
-  //digitalWrite(LEVITATION_PIN, LOW);
+  //digitalWrite(LEVITATION_PIN, HIGH);
   
   //STOP 10s and RESET GAME
   delay(10000);
